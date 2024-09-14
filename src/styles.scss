@@ -1,0 +1,71 @@
+@use '../node_modules/@angular/material' as mat;
+@import '../node_modules/@angular/material/prebuilt-themes/indigo-pink.css'; // Import the default prebuilt theme (optional)
+
+$custom-primary-palette: mat.define-palette(mat.$indigo-palette, 500, 300, 700); // Example using Material's indigo palette
+$custom-secondary-palette: mat.define-palette(mat.$pink-palette, 500, 300, 700); // Example using Material's pink palette
+$custom-error-palette: mat.define-palette(mat.$red-palette);
+
+// Define light theme
+$light-theme: mat.define-light-theme((
+  color: (
+    primary: $custom-primary-palette,
+    accent: $custom-secondary-palette,
+    warn: $custom-error-palette,
+  )
+));
+
+// Define dark theme
+$custom-dark: mat.define-palette(mat.$blue-grey-palette); // Custom dark palette
+$custom-dark-accent: mat.define-palette(mat.$amber-palette, 200, 100, 400); // Custom dark accent
+$dark-theme: mat.define-dark-theme((
+  color: (
+    primary: $custom-dark,
+    accent: $custom-dark-accent,
+    warn: $custom-error-palette,
+  )
+));
+
+// Include themes
+.light-theme {
+  @include mat.all-component-themes($light-theme);
+}
+
+.dark-theme {
+  @include mat.all-component-themes($dark-theme);
+}
+:root {
+    --primary-color: mat.get-color-from-palette($custom-primary-palette);
+  
+    --background-color: #fafafa; 
+    --form-background-color: #fff; 
+    --card-background-color: #fff;
+    --table-background-color: #fff; 
+  
+    --card-text-color: #333;
+    --card-subtitle-color: #666;
+    --table-text-color: #333;
+    --input-background-color: #f5f5f5;
+    --input-text-color: #333;
+    --input-border-color: #ccc;
+    --button-background-color: var(--primary-color);
+    --button-text-color: #fff;
+    --form-text-color: #333;
+    --button-hover-background-color: darken(var(--primary-color), 10%);
+  }
+  
+  .light-theme {
+    --background-color: #fafafa;
+    --card-background-color: #fff;
+    --table-background-color: #fff;
+    --form-text-color: #333;
+  }
+  
+  .dark-theme {
+    --background-color: #333;
+    --card-background-color: #444;
+    --table-background-color: #333;
+    --form-text-color: #333;
+    --card-text-color: #eee;
+    --card-subtitle-color: #ccc;
+    --table-text-color: #eee;
+  }

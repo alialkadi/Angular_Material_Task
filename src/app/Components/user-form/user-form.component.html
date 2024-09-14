@@ -1,0 +1,38 @@
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()" class="user-form">
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>Username</mat-label>
+      <input matInput formControlName="userName" placeholder="Enter your username" autocomplete="username" />
+      <mat-error *ngIf="userForm.get('userName')?.hasError('required')">
+        Username is required
+      </mat-error>
+    </mat-form-field>
+  
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email" placeholder="Enter your email" autocomplete="email" />
+      <mat-error *ngIf="userForm.get('email')?.hasError('required')">
+        Email is required
+      </mat-error>
+      <mat-error *ngIf="userForm.get('email')?.hasError('email')">
+        Enter a valid email
+      </mat-error>
+    </mat-form-field>
+  
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>Date of Birth</mat-label>
+      <input matInput formControlName="dob" type="date" placeholder="Select your date of birth" autocomplete="bday" />
+      <mat-error *ngIf="userForm.get('dob')?.hasError('required')">
+        Date of birth is required
+      </mat-error>
+    </mat-form-field>
+  
+    <div class="form-actions">
+      <button mat-raised-button class="text-from" type="submit" [disabled]="!userForm.valid">
+        Submit
+      </button>
+      <button mat-stroked-button color="warn" type="button" (click)="onReset()">
+        Reset
+      </button>
+    </div>
+  </form>
+  
